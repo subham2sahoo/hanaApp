@@ -1,0 +1,34 @@
+{
+  "name": "hanaApp",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "6.8.4",
+    "express": "^4",
+    "@sap/xssec": "^3",
+    "passport": "^0",
+    "@sap/cds-hana": "^2"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "build": {
+        "tasks": [
+            {
+                "for": "hana",
+                "dest": "../db"
+            },
+            {
+                "for": "node-cf"
+            }
+        ]
+    },
+    "requires": {
+        "auth": "xsuaa"
+    }
+}
+}
