@@ -1,0 +1,64 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:table="sap.ui.table" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog id="dialog" contentWidth="80%" contentHeight="50%" class="fragment">
+		<content>
+			<Table id="detailsTable" items="{/items}">
+				<columns>
+					<Column>
+						<Text text="Drwg#"/>
+					</Column>
+					<Column>
+						<Text text="Documentm Name"/>
+					</Column>
+					<Column >
+						<Text text="Revision"/>
+					</Column>
+					<Column >
+						<Text text=" Status"/>
+					</Column>
+					<Column ><Text text="Submittal Date"/></Column>
+					<Column >
+						<Text text="Due Date"/>
+					</Column>
+					<Column >
+						<Text text="Returned Date"/>
+					</Column>
+					<Column>
+						<Text text="Day until/Past Due"></Text>
+					</Column>
+					<Column >
+						<Text text="Status Symbol"></Text>
+					</Column>
+					<Column visible="false">
+						<Text text="Due Date"></Text>
+					</Column>
+					<Column >
+						<Text text="Comments"></Text>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{TRANSMITTAL_ID}"/>
+							<Text text="{DOCUMENT_NAME}"/>
+							<Text text="{REVISION}"/>
+							<ObjectStatus class="sapUiSmallMarginBottom" text="{STATUS}"
+								state="{= ${STATUS}=== 'Submitted for Review' || ${STATUS}=== 'Staged for Submittal' ? 'Error' : 'Success'}"/>
+							<Text
+								text="{ path:'CREATED_DATETIME', type:'sap.ui.model.type.Date', formatOptions: {pattern:'MM-dd-yyyy', strictParsing: true, UTC: true }}"/>
+							<Text
+								text="{ path:'EXPECTED_RETURN_DATE', type:'sap.ui.model.type.Date', formatOptions: {pattern:'MM-dd-yyyy', strictParsing: true, UTC: true} }"/>
+							<Text text="{ path:'RETURN_DATE', type:'sap.ui.model.type.Date', formatOptions: {pattern:'MM-dd-yyyy', strictParsing: true, UTC: true }}"/>
+							<Text text="{DUEDATE}"/>
+							<core:Icon src="{SYMBOL}"></core:Icon>
+							<Text text=""/>
+							<Text text="{RETURN_COMMENTS}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<endButton>
+			<Button tooltip="Close" text="Close" type="Reject" press=".onCloseOption"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

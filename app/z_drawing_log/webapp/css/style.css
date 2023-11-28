@@ -1,0 +1,32 @@
+.table {
+    border: 0.5px solid black;
+    width: 80%;
+    font-weight:600 !important;
+}
+
+.mainPage .sapMTableTH,
+.fragment .sapMTableTH{
+    background-color: lightsteelblue !important;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: middle;
+}
+
+.lastRow {
+    background-color: #a5b1c2;
+}
+.sapUShellApplicationContainer {
+    display: contents;
+    white-space: normal;
+}
+.red{
+	color:red;
+}
+.green{
+	color:green;
+}
+.yellow{
+	color:yellow;
+}
+.bold{
+	  font-weight:600 !important;
+}

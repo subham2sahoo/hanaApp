@@ -1,34 +1,48 @@
 {
-  "name": "hanaApp",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "6.8.4",
-    "express": "^4",
-    "@sap/xssec": "^3",
-    "passport": "^0",
-    "@sap/cds-hana": "^2"
-  },
-  "scripts": {
-    "start": "cds-serve"
-  },
-  "cds": {
-    "build": {
-        "tasks": [
-            {
-                "for": "hana",
-                "dest": "../db"
-            },
-            {
-                "for": "node-cf"
-            }
-        ]
+    "name": "hanaApp",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/approuter": "^14.4.1",
+        "@sap/cds": "6.8.4",
+        "@sap/cds-hana": "^2",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+        "@sap/xssec": "^3",
+        "express": "^4",
+        "passport": "^0"
     },
-    "requires": {
-        "auth": "xsuaa"
+    "scripts": {
+        "start": "cds-serve",
+        "watch-uniquechar": "cds watch --open uniquechar/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy hanaApp --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "watch-z_drawing_log": "cds watch --open z_drawing_log/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "cds": {
+        "build": {
+            "tasks": [
+                {
+                    "for": "hana",
+                    "dest": "../db"
+                },
+                {
+                    "for": "node-cf"
+                }
+            ]
+        },
+        "requires": {
+            "db": {
+                "kind": "hana-cloud"
+            },
+            "auth": "xsuaa"
+        }
+    },
+    "devDependencies": {
+        "@sap/ux-specification": "^1.120.0",
+        "rimraf": "^3.0.2"
     }
-}
 }
